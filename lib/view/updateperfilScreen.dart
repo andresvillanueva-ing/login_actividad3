@@ -4,6 +4,7 @@ import 'package:login_actividad3/components/button.dart';
 import 'package:login_actividad3/components/textfield.dart';
 import 'package:login_actividad3/database/database_helper.dart';
 
+
 class UpdateProfileScreen extends StatefulWidget {
   final Users? profile;
 
@@ -18,6 +19,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final emailController = TextEditingController();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+  final db =DatabaseHelper();
 
   @override
   void initState() {
@@ -27,6 +29,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     userNameController.text = widget.profile?.userName ?? '';
     // No incluí la contraseña para no mostrarla en el campo de texto
   }
+  
+  
+ 
 
   @override
   Widget build(BuildContext context) {

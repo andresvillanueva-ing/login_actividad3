@@ -46,6 +46,6 @@ class DatabaseHelper{
 
   Future<int> updateUser(Users user)async{
     final Database db = await initDB();
-    return db.update("users", user.toMap(), where: "userName = ?", whereArgs: [user.userName] ) ;
+    return db.update("users", user.toMap(), where: "userName = ?", whereArgs: [user.userName]);
   }
 }
