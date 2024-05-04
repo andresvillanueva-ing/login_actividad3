@@ -27,13 +27,16 @@ class _SignupScreenState extends State<SignupScreen> {
     var res = await db.createUser(Users(fullName: fullName.text, email: email.text, userName: userName.text, password: password.text));
     if (res>0) {
       if (!mounted) return;
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen() ));
+        _showConfirmationDialog(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("REGISTRAR USUARIO"),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: SafeArea(
@@ -83,4 +86,22 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+}
+
+Future<bool?> _showConfirmationDialog(BuildContext context ) async{
+  return showDialog<bool>(
+    context: context, 
+    builder: (context){
+      return AlertDialog(
+        title: Text("Registro de usuario"),
+        content: Text("Su usuario ha sido registrado!!"),
+        actions: [
+          TextButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+          }, child: Text("Aceptar")),
+        ],
+      );
+    }
+    );
 }

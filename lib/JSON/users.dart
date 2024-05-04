@@ -13,7 +13,7 @@ class Users {
     final String password;
 
     Users({
-         this.id,
+        this.id,
          this.fullName,
          this.email,
         required this.userName,

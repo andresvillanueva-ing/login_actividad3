@@ -39,4 +39,13 @@ class DatabaseHelper{
     return res.isNotEmpty? Users.fromMap(res.first):null;
   }
 
+  Future<Future<int>> deleteUser(String userName)async{
+    final Database db = await initDB();
+    return  db.delete("users", where: "userName = ?", whereArgs: [userName]);
   }
+
+  Future<int> updateUser(Users user)async{
+    final Database db = await initDB();
+    return db.update("users", user.toMap(), where: "userName = ?", whereArgs: [user.userName] ) ;
+  }
+}
