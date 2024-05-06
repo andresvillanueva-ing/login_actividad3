@@ -15,33 +15,42 @@ class Perfil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            _UserProfileAvatar(profile: profile),
-            _UserProfileInfo(profile: profile),
-            _ActionButton(label: "SIGN UP", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: ((context) => const SignupScreen())));
-            }),
-            _UserDetailsList(profile: profile),
-             SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _updateButton(profile: profile, db: _db),
-                    SizedBox(width: 10),
-                    _DeleteButton(profile: profile, db: _db),
-                    SizedBox(width: 10),
-                    _cerrarSesion(),
-                  ],
-                ),
-              ),
-           
-          ],
-        )
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async{
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            child: Column(
+              children: [
+                _UserProfileAvatar(profile: profile),
+                _UserProfileInfo(profile: profile),
+                _ActionButton(label: "SIGN UP", onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const SignupScreen())));
+                }),
+                _UserDetailsList(profile: profile),
+                 SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 1.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _updateButton(profile: profile, db: _db),
+                        SizedBox(width: 10),
+                        _DeleteButton(profile: profile, db: _db),
+                        SizedBox(width: 10),
+                        _cerrarSesion(),
+                      ],
+                    ),
+                  ),
+               
+              ],
+            ),
+          )
+        ),
       ),
     );
   }
@@ -174,7 +183,7 @@ class _updateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const UpdateProfileScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>  UpdateProfileScreen(profile: profile!,)));
       }, 
       child: Text("Actualizar", style: TextStyle(color: Colors.red),));
   }

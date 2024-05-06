@@ -13,10 +13,23 @@ class DatabaseHelper{
 
     return openDatabase(path, version: 1,
       onCreate: (db, version) async{
-        await db.execute('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, fullName TEXT, email TEXT, userName TEXT UNIQUE, password TEXT)');
+        await db.execute('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT , fullName TEXT, email TEXT, userName TEXT UNIQUE, password TEXT)');
       }
       );
   }
+
+
+//   Future<Users?> autenticar(String userName, String password) async {
+//   final Database db = await initDB();
+//   var result = await db.rawQuery("select * from users where userName = '$userName' AND password = '$password'");
+//   if (result.isNotEmpty) {
+//     // Si se encuentra un usuario, devuelve el primer usuario encontrado
+//     return Users.fromMap(result.first);
+//   } else {
+//     // Si no se encuentra ningún usuario, devuelve null
+//     return null;
+//   }
+// }
 
   Future<bool> autenticar(Users usr)async{
     final Database db = await initDB();
@@ -48,4 +61,7 @@ class DatabaseHelper{
     final Database db = await initDB();
     return db.update("users", user.toMap(), where: "userName = ?", whereArgs: [user.userName]);
   }
+
+  
+  
 }
