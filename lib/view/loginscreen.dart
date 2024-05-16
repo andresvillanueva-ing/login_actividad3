@@ -4,6 +4,7 @@ import 'package:login_actividad3/components/button.dart';
 import 'package:login_actividad3/components/colors.dart';
 import 'package:login_actividad3/components/textfield.dart';
 import 'package:login_actividad3/database/database_helper.dart';
+import 'package:login_actividad3/view/googlemaps.dart';
 import 'package:login_actividad3/view/perfiles.dart';
 import 'package:login_actividad3/view/signupscreen.dart';
 
@@ -110,6 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   press: () {
                     Login();
                   }),
+              Button(label: "Google", press: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => GoogleMappState()));
+              }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
