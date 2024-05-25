@@ -19,18 +19,6 @@ class DatabaseHelper{
   }
 
 
-//   Future<Users?> autenticar(String userName, String password) async {
-//   final Database db = await initDB();
-//   var result = await db.rawQuery("select * from users where userName = '$userName' AND password = '$password'");
-//   if (result.isNotEmpty) {
-//     // Si se encuentra un usuario, devuelve el primer usuario encontrado
-//     return Users.fromMap(result.first);
-//   } else {
-//     // Si no se encuentra ningún usuario, devuelve null
-//     return null;
-//   }
-// }
-
   Future<bool> autenticar(Users usr)async{
     final Database db = await initDB();
     var result = await db.rawQuery("select * from users where userName = '${usr.userName}' AND password = '${usr.password}' ");
